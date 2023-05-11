@@ -26,13 +26,6 @@ body {
   border-bottom: 1px solid #094b65;
 }
 
-#alatoo-logo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-left: 20px;
-}
-
 @media only screen and (max-width: 1250px) {
   #header {
     padding: 10px 5%;
