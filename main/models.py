@@ -20,7 +20,32 @@ from django.urls import reverse
 #         return False
 
 
+class Product(models.Model):
+    STATUS_CHOICES = (
+        ('in stock', 'В наличии'),
+        ('out of stock', 'Нет в наличии')
+    )
 
+    title = models.CharField(max_length=50,)
+    # category = models.ManyToManyField('Category', related_name='products',)
+    # description = RichTextField(null=True, blank=True)
+    image = models.ImageField(upload_to='images/')
+    price = models.DecimalField(max_digits=12, decimal_places=2)
+    stock = models.CharField(choices=STATUS_CHOICES, max_length=50)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def get_absolute_url(self):
+        return reverse('product_detail', args=[str(self.id)])
+
+    def get_category_name(self):
+        return self.category
+
+    class Meta:
+        ordering = ['-created']
 
 
 
